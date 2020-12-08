@@ -1,0 +1,65 @@
+{% extends "base.html.twig" %}
+{% block meta_description %}
+    <meta name="description" content="Page de création d'un article" />   
+{% endblock %}
+{% block title %}Création d'un article{% endblock %}
+{% block body %}
+<div class="container pr-3 pl-3">
+    <h1 class="text-center py-3">Création d'un article</h1>
+        {{ form_start(formArticle)}}
+
+        {{form_row(formArticle.auteur, {
+            'attr': {
+                'placeholder' : "Votre nom d'auteur"
+            }
+        })}}
+
+        {{form_row(formArticle.titre, {
+            'attr': {
+                'placeholder' : "Titre de l'article"
+            }
+        })}}
+        
+        {{form_row(formArticle.slug, {
+            'attr': {
+                'placeholder' : "Ajouter un slug pour l'url"
+            }
+        })}}
+
+            {{form_row(formArticle.description, {
+            'attr': {
+                'placeholder' : "Description de l'article"
+            }
+        })}}
+        
+        {{form_row(formArticle.contenu, {
+            'attr': {
+                'placeholder' : "Contenu de l'article"
+            }
+            })}}
+            
+            {{form_row(formArticle.image, {
+                    'attr': {
+                        'placeholder' : "Image de l'article"
+                    }
+                })}}
+                
+        {{form_row(formArticle.category, {
+            'attr': {
+                'placeholder' : "Category de l'article"
+            }
+        })}}
+
+        <div class="row justify-content-center pb-3">
+            <div class="col">
+                <button type="submit" class="btn btn-registration d-block mx-auto my-0"> 
+                    Ajouter l'article
+                </button>
+            </div> 
+        </div>
+
+        {{form_end(formArticle)}}
+        
+</div>
+    
+{% endblock %}

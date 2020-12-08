@@ -1,0 +1,8 @@
+<h1 class="text-center">Confirmation de votre adresse e-mail</h1>
+<p>Bonjour vous avez effectué une demande d'inscription pour notre site Tansaku.fr,</p>
+<p> 
+    Pour activer votre compte, merci de confirmer votre adresse e-mail en cliquant sur le lien suivant : 
+    <a href="{{ absolute_url(path('app_verify_account', {"id": userID, 'token': registrationToken})) }}">
+    Confirmer mon adresse e-mail
+    </a>
+</p>

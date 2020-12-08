@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block meta_description %}
+    <meta name="description" content="Page de résultat de votre recherche" />   
+{% endblock %}
+{% block title %}Resultat de recherche : {{ mot }} {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center py-2">Recherche : {{ mot }} </h2>
+
+            {% if articles | length < 1 %}
+                <h6 class="text-center py-2"> Désolé, nous avons trouvé aucun résultat pour votre recherche. <br> <br> Vérifiez l'orthographe de ce que vous avez saisis, ou peut-être que nous n'avons pas encore traité ce sujet.</h6>
+                <img src="https://zupimages.net/up/20/50/twdg.jpg" alt="image triste" class="d-block my-0 mx-auto pt-2 pb-4">
+
+            {% else %}
+                <h4 class="text-center py-2">Nous avons trouvé {{articles | length}} 
+            résutat{% if articles | length > 1 %}s{% endif %} pour votre recherche</h4>
+            {% endif %}
+
+        <div class="row">
+            {% for article in articles %}
+            
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-xl-4 my-3">
+                <div class="card ml-auto mr-auto" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ asset("images/" ~ article.image) }}" alt="Card image cap" 
+                    style="height:200px; width=100px; display:block">
+                    <div class="card-body">
+                    <h5 class="card-title red">{{article.titre}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Rubrique : {{article.category.titre}}</h6>
+                        <p class="card-text">{{article.description}}</p>
+                    </div>
+                    <a href="{{path ('show_article', {'slug': article.slug}) }}" class="btn btn-primary">Lire la suite</a>
+                    
+                    {% if is_granted('ROLE_EDITOR') %}
+                    <a href="{{ path('edit_article', {'slug' : article.slug}) }}" class="btn btn-secondary">Modifier</a>
+                    {% endif %}
+                     
+                </div>
+            </div>    
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

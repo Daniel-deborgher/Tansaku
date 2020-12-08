@@ -1,0 +1,66 @@
+{% extends "admin/base.html.twig" %}
+{% block meta_description %}
+         <meta name="description" content="Administration d'un article" />   
+    {% endblock %}
+{% block title %}Modification de l'article numéro {{article.id}}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center py-3">Modification de : {{article.titre}}, écrit par : {{article.auteur}} </h2>
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title">Corriger l'annonce ?</h4>
+                    </div>
+                    <div class="card-body">
+                        {{form_widget(form)}}
+
+                        <div class="row justify-content-center">
+                            <div class="col">
+                        <button type="submit" class="btn btn-primary d-block mx-auto my-0">
+                            <i class="fas fa-check"></i>
+                            Enregistrer les modifications
+                        </button>
+                            </div> 
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title">Les commentaires</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Auteur</th>
+                                    <th>Commentaire</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for comment in article.comments %}
+                               <tr>
+                                    <td>{{ comment.author.firstName}}  {{comment.author.lastName}}</td>
+                                    <td>{{comment.content}}</td>
+                                    <td>
+                                        <a href="{{path('admin_comment_edit', {'id': comment.id})}}" class="btn btn-registration"><i class="fas fa-edit"></i></a>
+                                        <a href="{{path('admin_commentaire_delete', {'id': comment.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    </td>
+                               </tr> 
+                            {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{form_end(form)}}
+    </div>
+{% endblock %}

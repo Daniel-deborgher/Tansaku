@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block meta_description %}
+    <meta name="description" content="Liste de toutes nos revus" />   
+{% endblock %}
+{% block title %}Liste des revues{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h1 class="text-center py-3">Retrouvez toutes nos revues !</h1>
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-xl-4  mb-5">
+                <div class="card ml-auto mr-auto" style="width: 20rem;">
+                    <img class="card-img-top" src="{{ asset("images/" ~ article.image) }}" alt="Card image cap" 
+                    style="height:200px; width=100px; display:block">
+                    <div class="card-body">
+                    <h5 class="card-title red">{{article.titre}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Rubrique : {{article.category.titre}}</h6>
+                        <p class="card-text">{{article.description}}</p>
+                    </div>
+                    <a href="{{path ('show_article', {'slug': article.slug}) }}" class="btn btn-primary">Lire la suite</a>
+                    
+                    {% if is_granted('ROLE_EDITOR') %}
+                    <a href="{{ path('edit_article', {'slug' : article.slug}) }}" class="btn btn-secondary">Modifier</a>
+                    {% endif %}   
+                </div>
+            </div>    
+            {% endfor %}
+        </div>
+        {{ knp_pagination_render(articles) }}
+    </div>
+{% endblock %}

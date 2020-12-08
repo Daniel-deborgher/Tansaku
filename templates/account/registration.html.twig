@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block meta_description %}
+         <meta name="description" content="Page d'inscription au site internet Tansaku" />   
+        {% endblock %}
+{% block title %}Insription{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center pt-3">Inscrivez vous sur notre site</h1>
+        <div class="div-registration">
+            {{ form_start(form) }}
+            {{form_widget(form)}}
+            <div class="row justify-content-center pb-3">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary d-block mx-auto my-0">Confirmer l'inscription</button>
+                </div>
+            </div>
+            {{form_end(form)}}
+        </div>
+    </div>
+{% endblock %}

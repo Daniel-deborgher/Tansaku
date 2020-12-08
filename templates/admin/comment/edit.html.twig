@@ -1,0 +1,27 @@
+{% extends "admin/base.html.twig" %}
+{% block meta_description %}
+         <meta name="description" content="Page de modification d'un commentaire" />   
+        {% endblock %}
+{% block title %}Modification du commentaire {{comment.id}}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-5 text-center py-3">Modification du commentaire numéro : {{comment.id}}</h1> 
+        <div class="alert alert-info">
+            <strong>Annonce liée : </strong> {{comment.article.titre}} <br>
+            <strong>Auteur : </strong> {{comment.author.firstName}} {{comment.author.lastName}} <br>
+            <strong>Date de création : </strong> {{comment.createdAt|date("d/m/Y H:i")}}
+        </div>
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        <div class="row justify-content-center pb-3">
+                            <div class="col">
+                        <button type="submit" class="btn btn-primary d-block mx-auto my-0">
+                            <i class="fas fa-check"></i>
+                            Enregistrer les modifications
+                        </button>
+                            </div> 
+                        </div>
+        {{form_end(form)}}
+    </div>
+{% endblock %}

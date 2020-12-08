@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+{% block meta_description %}
+    <meta name="description" content="Affichage d'une revue" />   
+{% endblock %}
+{% block title %}Revue : {{article.titre}}{% endblock %}
+{% block body %}
+
+    <div class="container">
+    
+    {% include "partials/flash.html.twig" %}
+        <h1 class="text-center py-3"><strong>{{article.titre}}</strong></h1>
+        <img src="{{ asset("images/" ~ article.image) }}" class="mb-3">
+        <div class="row">
+            <div class="col mt-3"><p class="text-left"><em>{{article.description}}</em></p></div>
+            <div class="col mt-3"> <p class="text-right">Publiée le : {{article.createdAt | date('d/m/Y')}} à {{article.createdAt | date('H:i')}} </div>
+        </div>
+        <hr>
+        <h4 class="text-center py-2 red">Cette revue vous ai proposé par : {{article.auteur}}</h4>
+        <p class="text-justify text-article">{{article.contenu|raw}}</p>
+
+        <hr>
+
+        {% if article.comments|length > 0 %}
+            <h2 class="text-left py-2 h4">{{article.comments|length }}
+            {% if article.comments|length > 1 %}
+                    Commentaires de nos utilisateurs :
+                {% else %}
+                    Commentaire de nos utilisateurs :
+                {% endif %}
+            </h2>  
+                {% else %}
+                    <h2 class="text-center py-2 h4">Cette article n'a pas encore reçu de commentaires...</h2>
+            {% endif %}
+
+        {% for comment in article.comments %}
+                    <div class="bg-light rounded my-3 px-5">
+                        <strong>{{ comment.author.firstName}}  {{comment.author.lastName}}</strong>
+                        le (<small> {{comment.createdAt | date('d/m/Y')}} à {{comment.createdAt | date('H:i')}}</small>)
+                         a dit :  
+                        <blockquote>
+                            <em>
+                            {{comment.content|lower|replace({'chier': '*****', 'putain': '******', 'salope': '******', 'pute': '****', 'fdp': '***', 'con': '***',})}}
+                            </em>
+                        </blockquote>
+                    </div> 
+                {% endfor %}
+
+        {% if app.user %}
+        
+            {{ form_start(commentForm)}}
+            {{form_widget(commentForm)}}
+                <div class="row justify-content-center pb-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary d-block mx-auto my-0">Commenter</button>
+                    </div> 
+                </div>
+            {{form_end(commentForm)}}
+            {% else %}
+                <h2 class="text-center h4 py-2">Vous devez être connecté pour pouvoir commenter</h2>
+                <div class="row justify-content-center pb-3">
+                    <div class="col">
+                        <a href="{{path('account_login')}}" class="btn btn-succes d-block mx-auto my-0 connexion">Se connecter</a>
+                    </div> 
+                </div>
+        {% endif %}  
+    </div>
+{% endblock %}

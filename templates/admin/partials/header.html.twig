@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{path('home')}}">Tansaku</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('admin_dashboard')}}">
+        <i class="fas fa-chart-line"></i>
+        Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('admin_articles_index')}}">
+        <i class="fas fa-folder"></i>
+        Articles
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('admin_commentaires_index')}}">
+        <i class="fas fa-comments"></i>
+        Commentaires
+        </a>
+      </li><li class="nav-item">
+        <a class="nav-link" href="{{path('admin_users_index')}}">
+        <i class="fas fa-users"></i>
+        Utilisateurs
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="{{path('home')}}" target="_blank" class="nav-link">
+            <i class="fas fa-arrow-left"></i>
+            Retour au site
+            </a>
+        </li>
+    </ul>
+  </div>
+</nav>

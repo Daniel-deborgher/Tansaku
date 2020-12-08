@@ -1,0 +1,141 @@
+{% extends "base.html.twig" %}
+{% block meta_description %}
+    <meta name="description" content="Page d'accueil du site Tansaku, pour ceux qui souhaitent partager leur passion pour l'animation japonnaise" />   
+{% endblock %}
+{% block title %}Page d'accueil{% endblock %}
+{% block body %}
+    <div class="container">
+        {% include "partials/flash.html.twig" %}
+        <div class="row justify-content-center pt-2">
+            <div class="col-4 pr-0">
+                <h1 class="text-right my-4 pr-0 text-h-home"> <strong><em>Tansaku</em></strong></h1>
+            </div>
+            <div class="col-4 pl-0">
+                <img src="https://zupimages.net/up/20/48/qgu5.png" alt="Logo Tansaku" width="150px" height="150px">
+            </div>
+        </div>
+        <h1 class="text-center py-4 text-h1-home">Bienvenue sur le site dédié à l'animation japonnaise !</h1>
+        <img src="{{ asset("images/tansaku.jpg")}}" alt="Image d'accueil" class="mt-3" style="height:auto; max-width: 100%; display:block;"> 
+        <h2 class="text-center mt-3 mb-3">Nos dernières revues</h2> 
+        <div class="row">
+            {% for article in actu %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-xl-4 mt-3">
+                            <div class="card ml-auto mr-auto" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ asset("images/" ~ article.image) }}" alt="Card image cap" 
+                            style="height:200px; width=100px; display:block">
+                            <div class="card-body">
+                            <h5 class="card-title red">{{article.titre}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Rubrique : {{article.category.titre}}</h6>
+                            <p class="card-text">{{article.description}}</p>
+                            </div>
+                            <a href="{{path ('show_article', {'slug': article.slug}) }}" class="btn btn-primary">Lire la suite</a>                                    
+                            {% if is_granted('ROLE_EDITOR') %}
+                            <a href="{{ path('edit_article', {'slug' : article.slug}) }}" class="btn btn-secondary">Modifier</a>
+                            {% endif %}
+                            </div>
+                    </div>    
+            {% endfor %}  
+        </div>   
+        <h2 class="text-center py-4">Découvrir de nouveaux mangas</h2>
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+            {% for article in a_decouvrir %}
+            {% if loop.first %}
+            <div class="carousel-item active">
+                    <a href="{{path ('show_article', {'slug': article.slug}) }}">
+                        <img src="{{ asset("images/" ~ article.image) }}" class="d-block w-100" alt="Image de l'article">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="h-caroussel">{{article.titre}}</h5>
+                                <p>{{article.description}}</p>
+                            </div>
+                    </a>
+                </div>
+                {% else %}
+                    <div class="carousel-item">
+                    <a href="{{path ('show_article', {'slug': article.slug}) }}">
+                        <img src="{{ asset("images/" ~ article.image) }}" class="d-block w-100" alt="Image de l'article">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="h-caroussel">{{article.titre}}</h5>
+                                <p>{{article.description}}</p>
+                            </div>
+                    </a>
+                </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Précédent</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Suivant</span>
+            </a>
+        </div>
+            <h2 class="text-center py-4">Nos critiques mangas</h2> 
+        <div class="row">
+            {% for article in last_manga %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-xl-4 mt-3">
+                            <div class="card ml-auto mr-auto" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ asset("images/" ~ article.image) }}" alt="Card image cap" 
+                            style="height:200px; width=100px; display:block">
+                            <div class="card-body">
+                            <h5 class="card-title red">{{article.titre}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Rubrique : {{article.category.titre}}</h6>
+                            <p class="card-text">{{article.description}}</p>
+                            </div>
+                            <a href="{{path ('show_article', {'slug': article.slug}) }}" class="btn btn-primary">Lire la suite</a>                                    
+                            {% if is_granted('ROLE_EDITOR') %}
+                            <a href="{{ path('edit_article', {'slug' : article.slug}) }}" class="btn btn-secondary">Modifier</a>
+                            {% endif %}
+                            </div>
+                    </div>    
+            {% endfor %}
+        </div> 
+            <h2 class="text-center py-4">Nos critiques d'animation</h2> 
+        <div class="row">
+        {% for article in anime %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-xl-4 mt-3">
+                            <div class="card ml-auto mr-auto" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ asset("images/" ~ article.image) }}" alt="Card image cap" 
+                            style="height:200px; width=100px; display:block">
+                            <div class="card-body">
+                            <h5 class="card-title red">{{article.titre}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Rubrique : {{article.category.titre}}</h6>
+                            <p class="card-text">{{article.description}}</p>
+                            </div>
+                            <a href="{{path ('show_article', {'slug': article.slug}) }}" class="btn btn-primary">Lire la suite</a>                                    
+                            {% if is_granted('ROLE_EDITOR') %}
+                            <a href="{{ path('edit_article', {'slug' : article.slug}) }}" class="btn btn-secondary">Modifier</a>
+                            {% endif %}
+                            </div>
+                    </div>    
+            {% endfor %}
+        </div> 
+            <h2 class="text-center py-4">Nos critiques jeux vidéos</h2> 
+        <div class="row">
+                {% for article in jeux_video %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-xl-4 mt-3">
+                            <div class="card ml-auto mr-auto mb-4" style="width: 18rem;" >
+                            <img class="card-img-top" src="{{ asset("images/" ~ article.image) }}" alt="Card image cap" 
+                            style="height:200px; width=100px; display:block">
+                            <div class="card-body">
+                            <h5 class="card-title red">{{article.titre}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Rubrique : {{article.category.titre}}</h6>
+                            <p class="card-text">{{article.description}}</p>
+                            </div>
+                            <a href="{{path ('show_article', {'slug': article.slug}) }}" class="btn btn-primary">Lire la suite</a>                                    
+                            {% if is_granted('ROLE_EDITOR') %}
+                            <a href="{{ path('edit_article', {'slug' : article.slug}) }}" class="btn btn-secondary">Modifier</a>
+                            {% endif %}
+                            </div>
+                    </div>    
+            {% endfor %}
+        </div> 
+    </div>  
+{% endblock %}

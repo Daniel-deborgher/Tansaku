@@ -1,0 +1,126 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-tansaku" id="navbar-tansaku">
+  <img src="https://zupimages.net/up/20/48/qgu5.png" alt="" class="image-header" width="50" height="50">
+  <a class="navbar-brand" href="{{path('home')}}">Tansaku</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+
+      {# Je récupère la page courante, si elle est égale à celle de la page en cours, j'ajoute la classe active. #}
+
+      <li class="nav-item">
+        <a href="{{path('article_index')}}" class= 
+          {% if app.request.attributes.get('_route') == 'article_index' %}
+            "nav-link active" 
+          {% else %}
+            "nav-link" 
+          {% endif %} 
+        >Actu</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{path('show_category_manga')}}" class=
+          {% if app.request.attributes.get('_route') == 'show_category_manga' %}
+            "nav-link active" 
+          {% else %}
+            "nav-link" 
+          {% endif %} 
+        >Manga</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{path('show_category_anime')}}" class=
+          {% if app.request.attributes.get('_route') == 'show_category_anime' %}
+            "nav-link active" 
+          {% else %}
+            "nav-link" 
+          {% endif %} 
+        >Animé</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{path('show_category_jeux_video')}}" class=
+          {% if app.request.attributes.get('_route') == 'show_category_jeux_video' %}
+            "nav-link active" 
+          {% else %}
+            "nav-link" 
+          {% endif %} 
+        >Jeux-vidéo</a>
+      </li>
+      
+      <li class="nav-item">
+        <a href="{{path('show_category_a_decouvrir')}}" class=
+          {% if app.request.attributes.get('_route') == 'show_category_a_decouvrir' %}
+            "nav-link active" 
+          {% else %}
+            "nav-link" 
+          {% endif %} 
+        >A découvrir</a>
+      </li>
+
+      {% if is_granted('ROLE_EDITOR') %}
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+        <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">Gestion</a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-tansaku" aria-labelledby="accountDropdownLink">
+              <a href="{{path('create_article')}}" class="dropdown-item dropdown-tansaku">Créer un article</a>
+              <a href="{{ path('create_category') }}" class="dropdown-item">Créer une catégorie</a>
+          {% if is_granted('ROLE_ADMIN') %}
+            <div class="dropdown-divider"></div>
+              <a href="{{path('admin_dashboard')}}" class="dropdown-item">Administration</a>
+            </div>         
+      {% endif %}
+        </li>
+        {% endif %}
+        </ul>
+ 
+    </ul>
+    <ul class="navbar-nav ml-auto">
+    {% if app.user %}
+
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">
+        {% if app.user.picture %}<img src="{{ asset("images/" ~ app.user.picture) }}" class="avatar avatar-mini">{% endif %}
+          {{app.user.firstName}} {{app.user.lastName}}        
+        </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
+            <a href="{{ path('account_profile') }}" class="dropdown-item">Modifier mon profil</a>
+            <a href="{{ path('account_updatePassword') }}" class="dropdown-item">Modifier mon mot de passe</a>
+            <div class="dropdown-divider"></div>
+            <a href="{{ path('account_logout') }}" class="dropdown-item">Déconnexion</a>
+          </div>
+      </li>
+    {% else %}
+
+      <li class="nav-item">
+        <a href="{{ path('account_register') }}" class=
+          {% if app.request.attributes.get('_route') == 'account_register' %}
+            "nav-link active" 
+          {% else %}
+            "nav-link" 
+          {% endif %}
+        >Inscription</a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{{ path('account_login') }}" class=
+          {% if app.request.attributes.get('_route') == 'account_login' %}
+            "nav-link active" 
+          {% else %}
+            "nav-link" 
+          {% endif %}
+          >Connexion</a>
+      </li>
+
+    {% endif %}
+    </ul>
+    
+    <form class="form-inline my-2 my-lg-0" action= {{ path("recherche")}}>
+      <input class="form-control mr-sm-2" name="recherche" type="search" placeholder="Recherchez ..." aria-label="Search">
+      <button class="btn button-search my-2 my-sm-0" type="submit"><i class="fa fa-search blue-color "></i></button>
+    </form>
+  </div>
+</nav>

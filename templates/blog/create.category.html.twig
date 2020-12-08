@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+{% block meta_description %}
+    <meta name="description" content= 
+    {% if editMode %} 
+        "Page de modification d'une rubrique" 
+    {% else %}
+        "Page de création d'une rubrique"
+    {% endif %}/> 
+{% endblock %}
+{% block title %}
+    {% if editMode %}
+        Modification d'une rubrique
+    {% else %}
+        Création d'une rubrique
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="container pr-3 pl-3">
+    <h1 class="text-center py-3">
+        {% if editMode %}
+            Modification d'une rubrique
+        {% else %}
+            Création d'une rubrique
+        {% endif %}
+    </h1>
+
+        {{ form_start(formCategory)}}
+
+        {{form_row(formCategory.titre, {                                          
+            'attr': {
+                'placeholder' : "Titre de la nouvelle rubrique"
+            }
+        })}}
+        
+        {{form_row(formCategory.slug, {                                          
+            'attr': {
+                'placeholder' : "Ajoutez un slug pour votre nouvelle rubrique"
+            }
+        })}}
+
+        {{form_row(formCategory.description, {
+            'attr': {
+                'placeholder' : "Description de la nouvelle catégorie (optionelle)"
+            }
+            })}}
+            <div class="row justify-content-center pb-3">
+                <div class="col">
+                    <button type="submit" class="btn btn-registration d-block mx-auto my-0">
+                        {% if editMode %}
+                            Modifier la rubrique
+                        {% else %}
+                            Ajouter la rubrique
+                        {% endif %}
+                    </button>
+                </div> 
+            </div>
+    {{form_end(formCategory)}}
+</div>
+{% endblock %}

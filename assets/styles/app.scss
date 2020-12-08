@@ -1,0 +1,299 @@
+@import"~@fortawesome/fontawesome-free/css/all.min.css";
+@import"~bootstrap/scss/bootstrap";
+body {
+    background-image: url("https://zupimages.net/up/20/49/ifo2.jpg");
+    font-family: 'Mali', cursive;
+    margin-top: 56px;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.navbar {
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.navbar-dark .navbar-brand {
+    color: white;
+}
+
+.navbar-dark .navbar-brand:hover {
+    color: white;
+}
+
+.container,
+.container-fluid {
+    background-color: white;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.bg-dark {
+    background-color: rgb(81, 81, 81) !important;
+}
+
+.container-with-padding {
+    padding-left: 15;
+    padding-right: 15;
+}
+
+.avatar-mini {
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.col-lg-4,
+.col-md-4,
+.col-sm-10,
+.col-xs-12,
+.col-xl-4 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+}
+
+.col {
+    -ms-flex-preferred-size: O;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #818385;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+    transition: color .3s;
+}
+
+.button-search {
+    background-color: #CC0001;
+    color: whitesmoke;
+    border-color: #CC0001;
+    transition: color .2s, background-color .2s;
+}
+
+.button-search:hover {
+    background-color: transparent;
+    color: #CC0001;
+    border-color: #CC0001;
+    transition: color .2s, background-color .2s;
+}
+
+.btn-primary {
+    background-color: #CC0001 !important;
+    border-color: #CC0001 !important;
+}
+
+.btn-succes {
+    background-color: transparent;
+    color: #212529;
+    border-color: #212529;
+}
+
+.btn-succes:hover {
+    background-color: #212529;
+    color: white;
+    border-color: #212529;
+}
+
+.btn-registration:hover {
+    background-color: #212529;
+    color: white;
+    border-color: #212529;
+}
+
+.btn-registration {
+    background-color: transparent;
+    color: #212529;
+    border-color: #212529;
+}
+
+.connexion {
+    max-width: 130px !important;
+}
+
+.text-h-home {
+    color: #CC0001;
+}
+
+.text-h1-home {
+    color: #F5C235;
+}
+
+.text-muted {
+    color: #F5C235 !important;
+}
+
+.h-caroussel {
+    color: white;
+}
+
+#text-oublie {
+    color: #CC0001 !important;
+}
+
+.custom-file-label::after {
+    content: "Rechercher";
+}
+
+span.first {
+    margin-left: auto;
+}
+
+span.last {
+    margin-right: auto;
+}
+
+.current {
+    color: #CC0001;
+    margin: 0 5px;
+}
+
+.page a {
+    color: #212529;
+    margin: 0 5px;
+}
+
+.page a:hover {
+    color: #212529;
+}
+
+.next a {
+    color: #212529;
+}
+
+.next a {
+    margin: 0 5px;
+}
+
+.last a {
+    color: #212529;
+}
+
+.previous a {
+    color: #212529;
+}
+
+.previous a {
+    margin: 0 5px;
+}
+
+.first a {
+    color: #212529;
+}
+
+.container-footer {
+    background-color: #515151;
+}
+
+.fa-twitter {
+    color: white !important;
+}
+
+.fa-instagram {
+    color: white !important;
+}
+
+.fa-facebook {
+    color: white !important;
+}
+
+.hr-footer {
+    border-top: 2px ridge white;
+    width: 50%;
+    margin: 15px auto;
+}
+
+.h-footer {
+    color: white;
+}
+
+.copyright {
+    color: white;
+}
+
+.dropdown-item:active {
+    color: #212529;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.policity {
+    text-decoration: none;
+    color: white;
+}
+
+.policity:hover {
+    color: #e63535;
+    transition: color 0.3s;
+}
+
+.logo-footer {
+    font-size: 1.5em;
+}
+
+.card {
+    background-color: whitesmoke;
+}
+
+.red {
+    color: #CC0001;
+}
+
+@media screen and (min-width: 800px) {
+    .text-article,
+    .div-registration {
+        padding: 0 50px;
+    }
+    .text-right {
+        padding-right: 50px;
+    }
+    .text-left {
+        padding-left: 50px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .text-article,
+    .div-registration {
+        padding: 0 15px;
+    }
+    .text-right {
+        padding-right: 15px;
+    }
+    .text-left {
+        padding-left: 15px;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    a.btn.btn-registration {
+        margin-top: 15px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.7rem;
+        margin-bottom: 0;
+    }
+    .container {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
